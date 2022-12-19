@@ -3,6 +3,6 @@ const artistController = require('../controllers/artist');
 
 const artistRouter = express.Router();
 
-artistRouter.post('/', artistController.create);
+artistRouter.post('/', artistController.createArtist);
 
 module.exports = artistRouter;
