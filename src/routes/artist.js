@@ -9,5 +9,6 @@ artistRouter.get('/', artistController.getAllArtists);
 artistRouter.get('/:id', artistController.getArtistbyId);
 artistRouter.put('/:id', artistUpdate.putArtistById);
 artistRouter.patch('/:id', artistUpdate.patchArtistById);
+artistRouter.delete('/:id', artistUpdate.deleteArtist);
 
 module.exports = artistRouter;
