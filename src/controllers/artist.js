@@ -24,3 +24,19 @@ exports.getAllArtists = async (__req, res) => {
     res.status(500).json(err.message);
   }
 };
+
+exports.getArtistbyId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      rows: [artist],
+    } = await db.query('SELECT * FROM Artist WHERE id = $1', [id]);
+    if (!artist) {
+      return res.status(404).json({ message: `artist ${id} does not exist` });
+    }
+
+    res.status(200).json(artist);
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
