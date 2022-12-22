@@ -52,16 +52,18 @@ exports.patchArtistById = async (req, res) => {
 };
 exports.deleteArtist = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { artistId } = req.params;
 
     const {
       rows: [artist],
-    } = await db.query(`DELETE FROM Artists WHERE id = $1 RETURNING *, [id]`, [
-      id,
+    } = await db.query(`DELETE FROM Artists WHERE id = $1 RETURNING *`, [
+      artistId,
     ]);
 
     if (!artist) {
-      return res.status(404).json({ message: `artist ${id} does not exist` });
+      return res
+        .status(404)
+        .json({ message: `artist ${artistId} does not exist` });
     }
     res.status(200).json(artist);
   } catch (err) {
